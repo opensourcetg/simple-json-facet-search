@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "In memory JavaScript JSON document indexer by facet and search by facet.",
   "main": "custom_search.js",
+  "repository": {
+    "type": "git",
+    "url":"https://github.com/opensourcetg/simple-json-facet-search.git"
+  },
   "dependencies": {
     "lodash": "^4.17.15"
   },
