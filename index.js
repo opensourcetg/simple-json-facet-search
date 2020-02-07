@@ -29,12 +29,12 @@ function deep_index(o_id, facet_index, root, path) {
 }
 
 function build_facets_index(data, config) {
+    // TODO check config validity, for instance if there is an id, otherwise log & exit
     const index = {}
     for (let facet of config.facets) {
         index[facet.name] = {};
 
         for(let d of data) {
-            // TODO si d n'a pas d'id, pas possible d'indexer, logger erreur d'indexation pour d
             const o_id = d[config.id]; // unique key of the object to index
             path = facet.path.split('.');
 
@@ -48,7 +48,7 @@ function build_facets_index(data, config) {
 function search_facets(config, data, index, query) {
     let results = data.map(d => d[config.id]);
     for (q of query) {
-        results = _.intersection(results, index[q.facet][q.constraint]); // check if index has facet and if facet has constraint
+        results = _.intersection(results, index[q.facet][q.constraint]); // TODO check if index has facet and if facet has constraint
     }
     return results;
 }
