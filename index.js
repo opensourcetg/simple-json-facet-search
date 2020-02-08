@@ -19,6 +19,8 @@ function deep_index(o_id, facet_index, root, path) {
         return;
     }
 
+    if(! _.has(root, path[0])) { return } // property does not exist ? => exit
+
     if(_.isArray(root[path[0]])) {
         for(new_root of root[path[0]]) {
             deep_index(o_id, facet_index, new_root, path.slice(1));
