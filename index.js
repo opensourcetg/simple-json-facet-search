@@ -3,6 +3,7 @@ _.has = require('lodash/has');
 _.includes = require('lodash/includes');
 _.intersection = require('lodash/intersection');
 _.isArray = require('lodash/isArray');
+_.isNil = require('lodash/isNil');
 
 function addObjectIdToConstraintOfFacetIndex(o_id, constraint, facet_index) {
     if(! _.has(facet_index, constraint)) {
@@ -49,8 +50,13 @@ function build_facets_index(data, config) {
 
 function search_facets(config, data, index, query) {
     let results = data.map(d => d[config.id]);
-    for (q of query) {
-        results = _.intersection(results, index[q.facet][q.constraint]); // TODO check if index has facet and if facet has constraint
+    console.log(index)
+    for (fc of query.facet_constraints) {
+        if (_.has(index, fc.facet) 
+         && _.has(index[fc.facet], fc.constraint)
+         && !_.isNil(index[fc.facet][fc.constraint])) {
+           results = _.intersection(results, index[fc.facet][fc.constraint]);
+        }
     }
     return results;
 }
