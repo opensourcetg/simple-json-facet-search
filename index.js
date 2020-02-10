@@ -50,7 +50,7 @@ function build_facets_index(data, config) {
 
 function search_facets(config, data, index, query) {
     let results = data.map(d => d[config.id]);
-    console.log(index)
+
     for (fc of query.facet_constraints) {
         if (_.has(index, fc.facet) 
          && _.has(index[fc.facet], fc.constraint)
