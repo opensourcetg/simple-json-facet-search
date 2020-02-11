@@ -15,12 +15,12 @@ function addObjectIdToConstraintOfFacetIndex(o_id, constraint, facet_index) {
 }
 
 function deep_index(o_id, facet_index, root, path) {
+    if(! _.has(root, path[0])) { return } // property does not exist ? => exit
+    
     if(path.length == 1) {
         addObjectIdToConstraintOfFacetIndex(o_id, root[path[0]], facet_index);
         return;
     }
-
-    if(! _.has(root, path[0])) { return } // property does not exist ? => exit
 
     if(_.isArray(root[path[0]])) {
         for(new_root of root[path[0]]) {
