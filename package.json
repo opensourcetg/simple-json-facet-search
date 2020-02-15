@@ -1,6 +1,6 @@
 {
   "name": "simple-json-facet-search",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "In memory JavaScript JSON document indexer by facet and search by facet.",
   "main": "custom_search.js",
   "repository": {
